@@ -42,21 +42,19 @@ section{padding-block:clamp(48px,7vw,84px)}
 .btn-line:hover{background:var(--ink);border-color:var(--ink);color:#fff}
 
 /* HEADER */
-.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.top-in{display:flex;align-items:center;gap:24px;min-height:66px;flex-wrap:wrap}
+.top{position:sticky;top:0;z-index:40;background:rgba(11,13,16,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.12)}
+.top-in{display:flex;align-items:center;gap:28px;min-height:74px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto;color:inherit}
-.brand img{height:40px;width:auto;flex:none}
-.brand b{display:block;font:700 1.25rem/1 var(--head);letter-spacing:.12em}
-.brand small{display:block;font:500 .62rem/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:4px}
-.nav{display:flex;gap:20px}
-.nav a{display:inline-flex;gap:7px;align-items:baseline;font:500 .75rem/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--ink-2);padding-block:9px;border-bottom:2px solid transparent;white-space:nowrap;cursor:pointer}
-.nav a span{color:var(--blue)}
-.nav a:hover{border-color:var(--blue)}
-.nav a[aria-current="page"]{color:var(--blue);border-color:var(--blue)}
+.brand img{height:46px;width:auto;flex:none}
+.nav{display:flex;gap:30px}
+.nav a{font:600 1.04rem/1 var(--head);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:#c7cfdb;padding-block:10px;border-bottom:2px solid transparent;white-space:nowrap;cursor:pointer;transition:color .15s,border-color .15s}
+.nav a:hover{color:#fff;border-color:var(--blue-hi)}
+.nav a[aria-current="page"]{color:#fff;border-color:var(--blue-hi)}
 @media(max-width:1040px){
-  .top-in{gap:10px}
-  .nav{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap;border-top:1px solid var(--line);padding-block:7px;gap:18px;scrollbar-width:none}
+  .top-in{gap:12px;min-height:62px}
+  .nav{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap;border-top:1px solid rgba(255,255,255,.12);padding-block:9px;gap:24px;scrollbar-width:none}
   .nav::-webkit-scrollbar{height:0}
+  .nav a{font-size:.92rem}
 }
 
 /* HERO */
@@ -286,7 +284,7 @@ section{padding-block:clamp(48px,7vw,84px)}
 @media(max-width:700px){.reel-bucket{grid-template-columns:1fr 1fr}}
 @media(max-width:420px){.reel-bucket{grid-template-columns:1fr}}
 /* Cordón de soldadura en el borde (al cambiar de sección) */
-.weld-seam{position:relative;height:3px;background:var(--line)}
+.weld-seam{position:relative;height:3px;background:transparent}
 .weld-seam .bead{position:absolute;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,#7a4a12,#ef6a1a 55%,#ffe0ad);box-shadow:0 0 9px rgba(239,106,26,.85)}
 .weld-seam .tip{position:absolute;top:50%;left:0;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:#fff;box-shadow:0 0 10px 3px rgba(255,210,140,.95),0 0 20px 7px rgba(239,106,26,.7);opacity:0}
 .weld-seam.run .bead{animation:beadFill 1.05s ease-out both}
@@ -313,15 +311,15 @@ section{padding-block:clamp(48px,7vw,84px)}
 <header class="top">
   <div class="wrap top-in">
     <a class="brand" href="#inicio" data-view="inicio" aria-label="ANCO Metalmecánicos, inicio">
-      <img src="img/logo.png" alt="ANCO Multiservicios Metalmecánicos">
+      <img src="img/logo-white.png" alt="ANCO Multiservicios Metalmecánicos">
     </a>
     <nav class="nav" aria-label="Secciones">
-      <a href="#inicio" data-view="inicio"><span>00</span> Inicio</a>
-      <a href="#servicios" data-view="servicios"><span>01</span> Servicios</a>
-      <a href="#soldadura" data-view="soldadura"><span>02</span> Soldadura &amp; Wireline</a>
-      <a href="#proceso" data-view="proceso"><span>03</span> Diseño &amp; calidad</a>
-      <a href="#obras" data-view="obras"><span>04</span> Obras</a>
-      <a href="#empresa" data-view="empresa"><span>05</span> Empresa</a>
+      <a href="#inicio" data-view="inicio">Inicio</a>
+      <a href="#servicios" data-view="servicios">Servicios</a>
+      <a href="#soldadura" data-view="soldadura">Soldadura &amp; Wireline</a>
+      <a href="#proceso" data-view="proceso">Diseño &amp; Calidad</a>
+      <a href="#obras" data-view="obras">Obras</a>
+      <a href="#empresa" data-view="empresa">Empresa</a>
     </nav>
   </div>
 </header>
@@ -330,7 +328,7 @@ section{padding-block:clamp(48px,7vw,84px)}
   <div class="weld-seam" id="weldSeam"><span class="bead"></span><span class="tip"></span></div>
 
   <!-- VISTA: INICIO -->
-  <section class="view" id="inicio">
+  <div class="view" id="inicio">
     <div class="hero-v">
       <video class="hero-v-bg" autoplay muted playsinline preload="metadata" poster="img/welder.jpg">
         <source src="video/hero.mp4" type="video/mp4">
@@ -349,7 +347,7 @@ section{padding-block:clamp(48px,7vw,84px)}
         </div>
       </div>
     </div>
-    <div class="wrap">
+    <div class="wrap" style="padding-block:clamp(44px,6vw,80px)">
       <div class="specs">
         <div><small>Soldadura</small><b>Certificada</b><span>Soldadura y materiales</span></div>
         <div><small>Diseño</small><b>A la medida</b><span>Diseño 3D por proyecto</span></div>
@@ -380,7 +378,7 @@ section{padding-block:clamp(48px,7vw,84px)}
         <a class="btn" href="https://wa.me/573228660162?text=Hola%20ANCO,%20quiero%20cotizar%20un%20trabajo%20en%20metal." target="_blank" rel="noopener">Cotiza gratis</a>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- VISTA: SERVICIOS -->
   <div class="view" id="servicios" hidden>
