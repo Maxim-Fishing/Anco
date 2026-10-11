@@ -105,7 +105,7 @@ section{padding-block:clamp(48px,7vw,84px)}
 /* Hero con video */
 .hero-v{position:relative;background:var(--ink);border-bottom:1px solid var(--ink);overflow:hidden}
 .hero-v-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:1}
-.hero-v::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(11,13,16,.94),rgba(11,13,16,.4) 42%,rgba(11,13,16,.08) 72%);pointer-events:none}
+.hero-v::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(130% 100% at 50% 38%,transparent 52%,rgba(11,13,16,.6)),linear-gradient(0deg,rgba(11,13,16,.94),rgba(11,13,16,.4) 42%,rgba(11,13,16,.08) 72%);pointer-events:none}
 .hero-v-cx{position:relative;z-index:2;display:flex;align-items:flex-end;min-height:clamp(420px,56vw,620px);padding-block:clamp(36px,5vw,56px)}
 .hero-v-cx .wrap{width:100%}
 .hero-v *{color:#fff}
@@ -269,6 +269,29 @@ section{padding-block:clamp(48px,7vw,84px)}
 .fab:hover{transform:translateY(-4px)}
 @media(max-width:520px){.fab{right:10px}.fab img{height:106px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+/* Cota del hero */
+.hero-cota{position:absolute;top:16px;right:clamp(16px,4vw,32px);z-index:2;font:500 .68rem/1 var(--mono);letter-spacing:.14em;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.3);padding:6px 10px;text-transform:uppercase}
+/* Reels bucket (Instagram) */
+.reel-bucket{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.reel-bucket a{display:block;text-decoration:none;color:inherit}
+.rb-thumb{position:relative;display:block;aspect-ratio:9/13;overflow:hidden;border:1px solid var(--line);background:var(--tint)}
+.rb-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.reel-bucket a:hover .rb-thumb img{transform:scale(1.05)}
+.rb-play{position:absolute;inset:0;display:grid;place-items:center;background:rgba(11,13,16,.14)}
+.rb-play svg{width:50px;height:50px;fill:#fff;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))}
+.rb-cap{display:flex;gap:10px;margin-top:12px;font:500 .74rem/1.3 var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2)}
+.rb-cap span{color:var(--blue);flex:none}
+@media(max-width:700px){.reel-bucket{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.reel-bucket{grid-template-columns:1fr}}
+/* Cordón de soldadura en el borde (al cambiar de sección) */
+.weld-seam{position:relative;height:3px;background:var(--line)}
+.weld-seam .bead{position:absolute;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,#7a4a12,#ef6a1a 55%,#ffe0ad);box-shadow:0 0 9px rgba(239,106,26,.85)}
+.weld-seam .tip{position:absolute;top:50%;left:0;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:#fff;box-shadow:0 0 10px 3px rgba(255,210,140,.95),0 0 20px 7px rgba(239,106,26,.7);opacity:0}
+.weld-seam.run .bead{animation:beadFill 1.05s ease-out both}
+.weld-seam.run .tip{animation:tipMove 1.05s ease-out both}
+@keyframes beadFill{0%{width:0;opacity:1}72%{width:100%;opacity:1}100%{width:100%;opacity:0}}
+@keyframes tipMove{0%{left:0;opacity:1}92%{opacity:1}100%{left:100%;opacity:0}}
+@media(prefers-reduced-motion:reduce){.weld-seam.run .bead,.weld-seam.run .tip{animation:none!important}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -293,16 +316,16 @@ section{padding-block:clamp(48px,7vw,84px)}
     <nav class="nav" aria-label="Secciones">
       <a href="#inicio" data-view="inicio"><span>00</span> Inicio</a>
       <a href="#servicios" data-view="servicios"><span>01</span> Servicios</a>
-      <a href="#wireline" data-view="wireline"><span>02</span> Wireline</a>
-      <a href="#soldadura" data-view="soldadura"><span>03</span> Soldadura</a>
-      <a href="#proceso" data-view="proceso"><span>04</span> Diseño &amp; calidad</a>
-      <a href="#obras" data-view="obras"><span>05</span> Obras</a>
-      <a href="#empresa" data-view="empresa"><span>06</span> Empresa</a>
+      <a href="#soldadura" data-view="soldadura"><span>02</span> Soldadura &amp; Wireline</a>
+      <a href="#proceso" data-view="proceso"><span>03</span> Diseño &amp; calidad</a>
+      <a href="#obras" data-view="obras"><span>04</span> Obras</a>
+      <a href="#empresa" data-view="empresa"><span>05</span> Empresa</a>
     </nav>
   </div>
 </header>
 
 <main>
+  <div class="weld-seam" id="weldSeam"><span class="bead"></span><span class="tip"></span></div>
 
   <!-- VISTA: INICIO -->
   <section class="view" id="inicio">
@@ -310,6 +333,7 @@ section{padding-block:clamp(48px,7vw,84px)}
       <video class="hero-v-bg" autoplay muted loop playsinline preload="metadata" poster="img/welder.jpg">
         <source src="video/hero.mp4" type="video/mp4">
       </video>
+      <span class="hero-cota">Neiva · Huila — Colombia</span>
       <div class="hero-v-cx">
         <div class="wrap">
           <div class="hero-in">
@@ -336,7 +360,7 @@ section{padding-block:clamp(48px,7vw,84px)}
         <div class="do-grid">
           <a href="#servicios" data-view="servicios"><span class="code">01</span><h3>Fabricación a la medida</h3><p>Puertas, rejas, cubiertas, escaleras y estructuras.</p><span class="go">Ver servicios →</span></a>
           <a href="#soldadura" data-view="soldadura"><span class="code">02</span><h3>Soldadura certificada</h3><p>SMAW, MIG y TIG con respaldo WPS/PQR.</p><span class="go">Cómo funciona →</span></a>
-          <a href="#wireline" data-view="wireline"><span class="code">03</span><h3>Drums / Wireline</h3><p>Carretes para enrollar cable, sector petrolero.</p><span class="go">Ver especialidad →</span></a>
+          <a href="#soldadura" data-view="soldadura"><span class="code">03</span><h3>Drums / Wireline</h3><p>Carretes para enrollar cable, sector petrolero.</p><span class="go">Ver especialidad →</span></a>
           <a href="#proceso" data-view="proceso"><span class="code">04</span><h3>Diseño 3D y calidad</h3><p>Lo dibujamos antes de fabricar, con garantía.</p><span class="go">Ver proceso →</span></a>
         </div>
       </div>
@@ -384,50 +408,12 @@ section{padding-block:clamp(48px,7vw,84px)}
     </section>
   </div>
 
-  <!-- VISTA: WIRELINE -->
-  <div class="view" id="wireline" hidden>
-    <section class="band">
-      <div class="wrap">
-        <div>
-          <p class="eyebrow">02 · Especialidad · Servicios petroleros</p>
-          <h2>Drums para unidades Wireline</h2>
-          <p>Fabricamos drums (carretes o tambores) para unidades wireline: la pieza donde se enrolla el cable. Construcción soldada bajo norma, con el diámetro del núcleo calculado según el radio mínimo del cable, para que enrolle parejo y seguro.</p>
-          <ul>
-            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Construcción soldada bajo código AWS D1.1</li>
-            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Diámetro acorde al radio mínimo del cable</li>
-            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Materiales certificados y control de calidad</li>
-            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Fabricación a la medida de tu unidad</li>
-          </ul>
-          <p style="margin-top:24px">¿Necesitas un drum a medida? Escríbenos con las especificaciones del cable y tu unidad.</p>
-        </div>
-        <figure class="plate">
-          <img src="img/drum.jpg" alt="Drum para unidad wireline fabricado por ANCO">
-          <figcaption><span>Fabricación de drum</span><span>Wireline · ANCO</span></figcaption>
-        </figure>
-      </div>
-    </section>
-    <section>
-      <div class="wrap">
-        <div class="spec">
-          <h3>De qué nos encargamos</h3>
-          <p>Fabricamos drums nuevos y también reparamos los que ya tienes. Cuidamos lo que hace que un carrete trabaje bien: el núcleo, las bridas y el acabado de soldadura.</p>
-          <dl class="spec-grid">
-            <div><dt>Fabricación</dt><dd>Drums nuevos a la medida de tu unidad</dd></div>
-            <div><dt>Reparación</dt><dd>Mantenimiento y recuperación de carretes</dd></div>
-            <div><dt>Núcleo y bridas</dt><dd>Diámetro según el radio mínimo del cable</dd></div>
-            <div><dt>Acabado</dt><dd>Soldadura calificada y control de calidad</dd></div>
-          </dl>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- VISTA: SOLDADURA -->
+  <!-- VISTA: SOLDADURA & WIRELINE -->
   <div class="view" id="soldadura" hidden>
     <section>
       <div class="wrap">
         <div class="sec-head">
-          <p class="eyebrow">03 · Soldadura certificada · en palabras simples</p>
+          <p class="eyebrow">02 · Soldadura &amp; Wireline · en palabras simples</p>
           <h2>¿Qué significa "soldadura certificada"?</h2>
           <p>Trabajamos con los tres procesos principales. Aquí te explicamos cada uno, rápido y claro, para que sepas qué pides.</p>
         </div>
@@ -458,6 +444,40 @@ section{padding-block:clamp(48px,7vw,84px)}
         </div>
       </div>
     </section>
+    <section class="band">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">Especialidad · Servicios petroleros</p>
+          <h2>Drums para unidades Wireline</h2>
+          <p>Una de nuestras especialidades en soldadura: fabricamos drums (carretes o tambores) para unidades wireline, la pieza donde se enrolla el cable. Construcción soldada bajo norma, con el diámetro del núcleo calculado según el radio mínimo del cable, para que enrolle parejo y seguro.</p>
+          <ul>
+            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Construcción soldada bajo código AWS D1.1</li>
+            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Diámetro acorde al radio mínimo del cable</li>
+            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Materiales certificados y control de calidad</li>
+            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Fabricación a la medida de tu unidad</li>
+          </ul>
+          <p style="margin-top:24px">¿Necesitas un drum a medida? Escríbenos con las especificaciones del cable y tu unidad.</p>
+        </div>
+        <figure class="plate">
+          <img src="img/drum.jpg" alt="Drum para unidad wireline fabricado por ANCO" loading="lazy">
+          <figcaption><span>Fabricación de drum</span><span>Wireline · ANCO</span></figcaption>
+        </figure>
+      </div>
+    </section>
+    <section>
+      <div class="wrap">
+        <div class="spec">
+          <h3>De qué nos encargamos (Wireline)</h3>
+          <p>Fabricamos drums nuevos y también reparamos los que ya tienes. Cuidamos lo que hace que un carrete trabaje bien: el núcleo, las bridas y el acabado de soldadura.</p>
+          <dl class="spec-grid">
+            <div><dt>Fabricación</dt><dd>Drums nuevos a la medida de tu unidad</dd></div>
+            <div><dt>Reparación</dt><dd>Mantenimiento y recuperación de carretes</dd></div>
+            <div><dt>Núcleo y bridas</dt><dd>Diámetro según el radio mínimo del cable</dd></div>
+            <div><dt>Acabado</dt><dd>Soldadura calificada y control de calidad</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
   </div>
 
   <!-- VISTA: DISEÑO & CALIDAD -->
@@ -465,7 +485,7 @@ section{padding-block:clamp(48px,7vw,84px)}
     <section id="diseno">
       <div class="wrap">
         <div class="sec-head">
-          <p class="eyebrow">04 · Diseño a la medida</p>
+          <p class="eyebrow">03 · Diseño a la medida</p>
           <h2>Lo dibujamos antes de fabricarlo</h2>
           <p>¿No sabes cómo quedaría tu proyecto? Nosotros lo diseñamos. Hacemos dibujos y bosquejos en 3D a la medida de lo que necesitas, para que lo apruebes antes de construir.</p>
         </div>
@@ -510,7 +530,7 @@ section{padding-block:clamp(48px,7vw,84px)}
     <section id="portafolio">
       <div class="wrap">
         <div class="sec-head">
-          <p class="eyebrow">05 · Portafolio</p>
+          <p class="eyebrow">04 · Portafolio</p>
           <h2>Obras que hablan por nosotros</h2>
           <p>Una selección de trabajos entregados por ANCO: estructuras, fachadas, drums para wireline, tanques, carrocerías y más. La calidad del acabado es nuestra mejor carta de presentación.</p>
         </div>
@@ -550,17 +570,27 @@ section{padding-block:clamp(48px,7vw,84px)}
     </section>
     <section style="padding-top:0">
       <div class="wrap">
-        <div class="reels">
-          <div>
-            <p class="eyebrow">Reels · míranos en acción</p>
-            <h2>Velo en video</h2>
-            <p>En nuestros Reels mostramos cómo fabricamos: soldadura, armado en obra y entrega de cada proyecto. Síguenos y mira el proceso real de ANCO.</p>
-            <div class="cta">
-              <a class="btn" href="https://www.instagram.com/anco.metalmecanicos/reels/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg>Ver Reels en Instagram</a>
-              <a class="btn btn-line" href="https://web.facebook.com/profile.php?id=100089587451568" target="_blank" rel="noopener">Facebook</a>
-            </div>
-          </div>
-          <div class="reels-art"><video autoplay muted loop playsinline preload="metadata" poster="img/g15.jpg"><source src="video/reel.mp4" type="video/mp4"></video></div>
+        <div class="sec-head">
+          <p class="eyebrow">Reels · míranos en acción</p>
+          <h2>Velo en video</h2>
+          <p>Así trabajamos en ANCO: soldadura, armado en obra y entrega. Toca un reel para verlo en Instagram.</p>
+        </div>
+        <ul class="reel-bucket">
+          <li><a href="https://www.instagram.com/reel/C2ycFiwO-87/" target="_blank" rel="noopener">
+            <span class="rb-thumb"><img src="img/r1.jpg" alt="Reel ANCO: escaleras y barandas" loading="lazy"><span class="rb-play"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></span></span>
+            <span class="rb-cap"><span>Reel 01</span> Escaleras y barandas</span>
+          </a></li>
+          <li><a href="https://www.instagram.com/reel/CoTFnO6MGUU/" target="_blank" rel="noopener">
+            <span class="rb-thumb"><img src="img/r2.jpg" alt="Reel ANCO: fabricación de estructuras" loading="lazy"><span class="rb-play"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></span></span>
+            <span class="rb-cap"><span>Reel 02</span> Fabricación de estructuras</span>
+          </a></li>
+          <li><a href="https://www.instagram.com/reel/CoTEZsduzX4/" target="_blank" rel="noopener">
+            <span class="rb-thumb"><img src="img/r3.jpg" alt="Reel ANCO: drums para hidrocarburos" loading="lazy"><span class="rb-play"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></span></span>
+            <span class="rb-cap"><span>Reel 03</span> Drums para hidrocarburos</span>
+          </a></li>
+        </ul>
+        <div class="cta" style="margin-top:28px">
+          <a class="btn" href="https://www.instagram.com/anco.metalmecanicos/reels/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg>Ver todos en Instagram</a>
         </div>
       </div>
     </section>
@@ -571,7 +601,7 @@ section{padding-block:clamp(48px,7vw,84px)}
     <section id="nosotros" style="background:var(--tint)">
       <div class="wrap">
         <div class="sec-head">
-          <p class="eyebrow">06 · Por qué ANCO</p>
+          <p class="eyebrow">05 · Por qué ANCO</p>
           <h2>Trabajo serio, hecho a tu medida</h2>
           <p>ANCO Multiservicios Metalmecánicos es un taller de Neiva especializado en fabricación, mantenimiento y servicios petroleros en metal. Atendemos desde una reja para tu casa hasta drums para unidades wireline, con el mismo compromiso de calidad.</p>
         </div>
@@ -653,6 +683,8 @@ section{padding-block:clamp(48px,7vw,84px)}
     views.forEach(function(v){ v.hidden = (v.id !== id); });
     links.forEach(function(a){ a.setAttribute('aria-current', a.getAttribute('data-view') === id ? 'page' : 'false'); });
     window.scrollTo(0,0);
+    var seam=document.getElementById('weldSeam');
+    if(seam){ seam.classList.remove('run'); void seam.offsetWidth; seam.classList.add('run'); }
   }
   links.forEach(function(a){
     a.addEventListener('click', function(e){
