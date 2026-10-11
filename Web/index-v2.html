@@ -219,10 +219,12 @@ section{padding-block:clamp(56px,8vw,96px)}
   .phone{font-size:1.4rem}
 }
 
-/* WhatsApp flotante */
-.fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;width:54px;height:54px;display:grid;place-items:center;background:var(--ink);color:#fff;text-decoration:none}
-.fab:hover{background:var(--blue)}
-.fab .ico{width:26px;height:26px}
+/* WhatsApp flotante · montado en estructura metálica (torre de celosía) */
+.fab{position:fixed;right:18px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;display:flex;flex-direction:column;align-items:center;text-decoration:none}
+.fab-btn{width:54px;height:54px;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:2px;transition:background .15s}
+.fab:hover .fab-btn{background:var(--blue)}
+.fab-btn .ico{width:26px;height:26px}
+.fab-base{display:block;width:82px;height:50px;margin-top:-1px;color:var(--ink)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
@@ -519,7 +521,23 @@ section{padding-block:clamp(56px,8vw,96px)}
 </footer>
 
 <a class="fab" href="https://wa.me/573228660162?text=Hola%20ANCO,%20quiero%20cotizar%20un%20trabajo%20en%20metal." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
-  <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
+  <span class="fab-btn"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg></span>
+  <svg class="fab-base" viewBox="0 0 82 50" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square">
+      <path d="M20 4H62"/>
+      <path d="M33 4 16 48M49 4 66 48"/>
+      <path d="M28.4 16H53.6M22.95 30H59.05M17.93 43H64.07"/>
+      <path d="M28.4 16 59.05 30M53.6 16 22.95 30M22.95 30 64.07 43M59.05 30 17.93 43"/>
+      <path d="M10 48H24M58 48H72"/>
+    </g>
+    <g fill="#1747a6">
+      <rect x="38.6" y="2.4" width="3" height="3"/>
+      <rect x="27.1" y="14.7" width="2.6" height="2.6"/><rect x="52.3" y="14.7" width="2.6" height="2.6"/>
+      <rect x="21.65" y="28.7" width="2.6" height="2.6"/><rect x="57.75" y="28.7" width="2.6" height="2.6"/>
+      <rect x="12.8" y="46.8" width="2.4" height="2.4"/><rect x="18.8" y="46.8" width="2.4" height="2.4"/>
+      <rect x="58.8" y="46.8" width="2.4" height="2.4"/><rect x="64.8" y="46.8" width="2.4" height="2.4"/>
+    </g>
+  </svg>
 </a>
 
 <script>
