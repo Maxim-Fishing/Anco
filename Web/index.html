@@ -188,10 +188,14 @@ footer a:hover{color:#fff}
 .foot-note{border-top:1px solid rgba(255,255,255,.12);margin-top:24px;padding-top:16px;font-size:.82rem;color:#8ea0ba}
 @media(max-width:700px){.foot-grid{grid-template-columns:1fr 1fr}}
 
-/* FAB */
-.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;background:#25d366;color:#fff;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.3);text-decoration:none;transition:transform .15s}
-.fab:hover{transform:scale(1.08)}
-.fab svg{width:30px;height:30px;fill:#fff}
+/* FAB - WhatsApp montado en estructura metálica (torre de celosía) */
+.fab{position:fixed;right:18px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:50;display:flex;flex-direction:column;align-items:center;text-decoration:none;filter:drop-shadow(0 10px 14px rgba(0,0,0,.28))}
+.fab-btn{width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;position:relative;z-index:2;border:3px solid rgba(255,255,255,.92);box-shadow:0 4px 10px rgba(0,0,0,.25);transition:transform .2s ease}
+.fab-btn svg{width:30px;height:30px;fill:#fff}
+.fab-base{width:86px;height:56px;margin-top:-5px;transition:transform .2s ease}
+.fab:hover .fab-btn{transform:translateY(-3px)}
+.fab:hover .fab-base{transform:translateY(-1px)}
+@media(max-width:480px){.fab-btn{width:52px;height:52px}.fab-btn svg{width:27px;height:27px}.fab-base{width:78px;height:50px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -458,7 +462,26 @@ footer a:hover{color:#fff}
 </footer>
 
 <a class="fab" href="https://wa.me/573228660162?text=Hola%20ANCO,%20quiero%20cotizar%20un%20trabajo%20en%20metal." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.3c.2-.2.5-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.6.2.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"/></svg>
+  <span class="fab-btn">
+    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.3c.2-.2.5-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.6.2.1.4.1.6-.1l.9-1c.2-.2.4-.2.6-.1l2 .9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z"/></svg>
+  </span>
+  <svg class="fab-base" viewBox="0 0 86 56" aria-hidden="true">
+    <g fill="none" stroke="#64748a" stroke-width="4" stroke-linecap="round">
+      <path d="M35 7 16 53"/><path d="M51 7 70 53"/>
+    </g>
+    <g fill="none" stroke="#5f7086" stroke-width="2.1" stroke-linecap="round">
+      <path d="M30.9 17H55.1M25.5 30H60.5M20.1 43H65.9"/>
+      <path d="M30.9 17 60.5 30M55.1 17 25.5 30M25.5 30 65.9 43M60.5 30 20.1 43"/>
+    </g>
+    <rect x="31" y="1" width="24" height="6" rx="1.5" fill="#4a5a6c" stroke="#2b3744"/>
+    <rect x="9" y="51" width="16" height="5" rx="1" fill="#3c4b5c" stroke="#2a3644"/>
+    <rect x="61" y="51" width="16" height="5" rx="1" fill="#3c4b5c" stroke="#2a3644"/>
+    <g fill="#ef6a1a">
+      <circle cx="36" cy="4" r="1.3"/><circle cx="50" cy="4" r="1.3"/>
+      <circle cx="13" cy="53.5" r="1.2"/><circle cx="21" cy="53.5" r="1.2"/>
+      <circle cx="65" cy="53.5" r="1.2"/><circle cx="73" cy="53.5" r="1.2"/>
+    </g>
+  </svg>
 </a>
 
 <script>
