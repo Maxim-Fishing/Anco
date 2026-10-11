@@ -102,6 +102,24 @@ section{padding-block:clamp(48px,7vw,84px)}
 .impact h2{font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:600;max-width:20ch}
 .impact p{color:#c7cfdb;margin-top:12px;max-width:42ch}
 @media(max-width:640px){.impact{flex-direction:column;align-items:flex-start}}
+/* Hero con video */
+.hero-v{position:relative;background:var(--ink);border-bottom:1px solid var(--ink);overflow:hidden}
+.hero-v-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.6}
+.hero-v::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(11,13,16,.9),rgba(11,13,16,.5) 55%,rgba(11,13,16,.25));pointer-events:none}
+.hero-v-cx{position:relative;z-index:2;display:flex;align-items:center;min-height:clamp(380px,52vw,560px);padding-block:clamp(40px,6vw,72px)}
+.hero-v-cx .wrap{width:100%}
+.hero-v *{color:#fff}
+.hero-v .eyebrow{color:var(--blue-hi)}
+.hero-v h1{font-size:clamp(2.5rem,6vw,4.8rem);font-weight:600;letter-spacing:-.01em;max-width:18ch}
+.hero-v h1 span{color:var(--blue-hi)}
+.hero-v .lead{margin-top:20px;font-size:1.15rem;color:#dbe6f8;max-width:46ch}
+.hero-v .cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+.hero-v .btn-line{color:#fff;border-color:#fff}
+.hero-v .btn-line:hover{background:#fff;border-color:#fff;color:var(--ink)}
+/* Impacto con foto del soldador */
+.impact-bg{background:linear-gradient(90deg,rgba(11,13,16,.93),rgba(11,13,16,.55) 60%,rgba(11,13,16,.3)),url("img/welder.jpg");background-size:cover;background-position:center right}
+.impact-bg::before{display:none}
+.reels-art video{width:100%;height:100%;object-fit:cover}
 
 /* WIRELINE · banda azul */
 .band{background:var(--blue);color:#fff}
@@ -277,23 +295,24 @@ section{padding-block:clamp(48px,7vw,84px)}
 <main>
 
   <!-- VISTA: INICIO -->
-  <section class="view hero" id="inicio">
-    <div class="wrap">
-      <div class="hero-grid">
-        <div>
+  <section class="view" id="inicio">
+    <div class="hero-v">
+      <video class="hero-v-bg" autoplay muted loop playsinline preload="metadata" poster="img/welder.jpg">
+        <source src="video/hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-v-cx">
+        <div class="wrap">
           <p class="eyebrow">Fabricación · Mantenimiento · Servicios petroleros · Neiva</p>
           <h1>Lo que imaginas en metal, lo fabricamos <span>a tu medida.</span></h1>
-          <p class="lead">Del hogar a la industria: estructuras, soldadura certificada y fabricación especializada, con diseño a la medida y respaldo de calidad.</p>
+          <p class="lead">Del hogar a la industria: estructuras, soldadura certificada y fabricación especializada, con respaldo de calidad.</p>
           <div class="cta">
             <a class="btn" href="https://wa.me/573228660162?text=Hola%20ANCO,%20quiero%20cotizar%20un%20trabajo%20en%20metal." target="_blank" rel="noopener">Cotiza gratis</a>
             <a class="btn btn-line" href="#obras" data-view="obras">Ver obras</a>
           </div>
         </div>
-        <figure class="shot">
-          <img src="img/hero.jpg" alt="Estructura metálica fabricada por ANCO">
-          <figcaption><span>Obra · Estructura en acero</span><span>Neiva</span></figcaption>
-        </figure>
       </div>
+    </div>
+    <div class="wrap">
       <div class="specs">
         <div><small>Soldadura</small><b>Certificada</b><span>Soldadura y materiales</span></div>
         <div><small>Diseño</small><b>A la medida</b><span>Diseño 3D por proyecto</span></div>
@@ -316,7 +335,7 @@ section{padding-block:clamp(48px,7vw,84px)}
         <span>Hogar</span><span>Comercio</span><span>Industria</span><span>Sector petrolero</span><span>Agro</span>
       </div>
 
-      <div class="impact">
+      <div class="impact impact-bg">
         <div>
           <h2>Lo que imaginas en metal, lo hacemos realidad</h2>
           <p>Materiales certificados, soldadura calificada y entrega con documentos de calidad. En Neiva y el Huila.</p>
@@ -345,6 +364,11 @@ section{padding-block:clamp(48px,7vw,84px)}
           <article><svg class="stk" aria-hidden="true"><use href="#i-tool"/></svg><h3>Mantenimiento</h3><p>Reparación y mantenimiento industrial.</p></article>
           <article><svg class="stk" aria-hidden="true"><use href="#i-pen"/></svg><h3>Diseños especiales</h3><p>A la medida de tu proyecto.</p></article>
         </div>
+        <div class="sectores" style="margin-top:34px">
+          <small>Materiales</small>
+          <span>Acero al carbono</span><span>Acero inoxidable</span><span>Aluminio</span><span>Lámina</span><span>Tubería estructural</span>
+        </div>
+        <p style="margin-top:26px;color:var(--muted);max-width:62ch">¿No ves lo que buscas? Fabricamos cualquier pieza o estructura metálica a la medida. Cuéntanos tu idea y la cotizamos sin costo.</p>
       </div>
     </section>
   </div>
@@ -369,6 +393,20 @@ section{padding-block:clamp(48px,7vw,84px)}
           <img src="img/drum.jpg" alt="Drum para unidad wireline fabricado por ANCO">
           <figcaption><span>Fabricación de drum</span><span>Wireline · ANCO</span></figcaption>
         </figure>
+      </div>
+    </section>
+    <section>
+      <div class="wrap">
+        <div class="spec">
+          <h3>De qué nos encargamos</h3>
+          <p>Fabricamos drums nuevos y también reparamos los que ya tienes. Cuidamos lo que hace que un carrete trabaje bien: el núcleo, las bridas y el acabado de soldadura.</p>
+          <dl class="spec-grid">
+            <div><dt>Fabricación</dt><dd>Drums nuevos a la medida de tu unidad</dd></div>
+            <div><dt>Reparación</dt><dd>Mantenimiento y recuperación de carretes</dd></div>
+            <div><dt>Núcleo y bridas</dt><dd>Diámetro según el radio mínimo del cable</dd></div>
+            <div><dt>Acabado</dt><dd>Soldadura calificada y control de calidad</dd></div>
+          </dl>
+        </div>
       </div>
     </section>
   </div>
@@ -397,6 +435,16 @@ section{padding-block:clamp(48px,7vw,84px)}
             <div><dt>AWS D1.1</dt><dd>Norma internacional de soldadura en acero</dd></div>
           </dl>
         </div>
+        <div class="spec" style="margin-top:28px">
+          <h3>Qué soldamos</h3>
+          <p>Trabajamos acero al carbono e inoxidable, en estructuras, tubería y equipos. Cada trabajo queda con su registro.</p>
+          <dl class="spec-grid">
+            <div><dt>Estructuras</dt><dd>Vigas, columnas y cerchas</dd></div>
+            <div><dt>Tubería</dt><dd>Spools y líneas de proceso</dd></div>
+            <div><dt>Inoxidable</dt><dd>Tanques y equipos</dd></div>
+            <div><dt>Inspección</dt><dd>Revisión visual y registros</dd></div>
+          </dl>
+        </div>
       </div>
     </section>
   </div>
@@ -416,6 +464,7 @@ section{padding-block:clamp(48px,7vw,84px)}
           <li><span class="n">03</span><h3>Fabricación</h3><p>Construimos con materiales certificados y soldadura calificada.</p></li>
           <li><span class="n">04</span><h3>Entrega con respaldo</h3><p>Instalamos y entregamos con los documentos de calidad.</p></li>
         </ol>
+        <p style="margin-top:30px;color:var(--muted);max-width:64ch">Entregamos planos y renders a escala para que apruebes medidas, materiales y acabados antes de cortar la primera lámina. Así no hay sorpresas en la obra.</p>
       </div>
     </section>
     <section id="calidad" style="padding-top:0">
@@ -500,7 +549,7 @@ section{padding-block:clamp(48px,7vw,84px)}
               <a class="btn btn-line" href="https://web.facebook.com/profile.php?id=100089587451568" target="_blank" rel="noopener">Facebook</a>
             </div>
           </div>
-          <div class="reels-art"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg></div>
+          <div class="reels-art"><video autoplay muted loop playsinline preload="metadata" poster="img/g15.jpg"><source src="video/reel.mp4" type="video/mp4"></video></div>
         </div>
       </div>
     </section>
@@ -513,6 +562,7 @@ section{padding-block:clamp(48px,7vw,84px)}
         <div class="sec-head">
           <p class="eyebrow">06 · Por qué ANCO</p>
           <h2>Trabajo serio, hecho a tu medida</h2>
+          <p>ANCO Multiservicios Metalmecánicos es un taller de Neiva especializado en fabricación, mantenimiento y servicios petroleros en metal. Atendemos desde una reja para tu casa hasta drums para unidades wireline, con el mismo compromiso de calidad.</p>
         </div>
         <div class="why">
           <article><span class="n">01</span><h3>Fabricación a la medida</h3><p>Tú lo imaginas, nosotros lo diseñamos y fabricamos exactamente como lo necesitas.</p></article>
