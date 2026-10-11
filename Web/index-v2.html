@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
 /* ANCO · sistema visual técnico: blanco papel, azul ingeniería, negro tinta.
-   Tipografía: Plex Condensed (titulares), Plex Sans (texto), Plex Mono (datos, cotas, etiquetas). */
+   Plex Condensed (titulares), Plex Sans (texto), Plex Mono (datos, cotas, etiquetas).
+   Navegación por secciones (pestañas): se muestra una vista a la vez. */
 :root{
   --paper:#ffffff; --tint:#f2f5fa; --line:#d6dde9;
   --ink:#0b0d10; --ink-2:#2b313b; --muted:#56606f;
@@ -20,7 +21,8 @@
   --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:76px}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.6 var(--body);-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit}
@@ -34,7 +36,7 @@ p{margin:0}
 
 .eyebrow{display:flex;align-items:center;gap:12px;font:500 .78rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin:0 0 18px}
 .eyebrow::before{content:"";width:28px;height:2px;background:currentColor;flex:none}
-section{padding-block:clamp(56px,8vw,96px)}
+section{padding-block:clamp(48px,7vw,84px)}
 .sec-head{max-width:700px;margin-bottom:44px}
 .sec-head h2{font-size:clamp(2rem,4.2vw,3rem)}
 .sec-head p{color:var(--muted);font-size:1.05rem;margin-top:14px;max-width:58ch}
@@ -45,23 +47,27 @@ section{padding-block:clamp(56px,8vw,96px)}
 .btn-line:hover{background:var(--ink);border-color:var(--ink);color:#fff}
 
 /* HEADER */
-.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.top-in{display:flex;align-items:center;gap:28px;min-height:68px}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
-.brand i{width:12px;height:12px;background:var(--blue);flex:none}
-.brand b{display:block;font:700 1.35rem/1 var(--head);letter-spacing:.14em}
-.brand small{display:block;font:500 .64rem/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:5px}
-.nav{display:flex;gap:22px}
-.nav a{font:500 .76rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink-2);padding-block:8px;border-bottom:2px solid transparent}
+.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:24px;min-height:66px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto;color:inherit}
+.brand img{height:40px;width:auto;flex:none}
+.brand b{display:block;font:700 1.25rem/1 var(--head);letter-spacing:.12em}
+.brand small{display:block;font:500 .62rem/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.nav{display:flex;gap:20px}
+.nav a{display:inline-flex;gap:7px;align-items:baseline;font:500 .75rem/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--ink-2);padding-block:9px;border-bottom:2px solid transparent;white-space:nowrap;cursor:pointer}
 .nav a span{color:var(--blue)}
 .nav a:hover{border-color:var(--blue)}
-.top .btn{min-height:42px;padding:.5em 1em;font-size:.92rem}
-@media(max-width:1040px){.nav{display:none}}
+.nav a[aria-current="page"]{color:var(--blue);border-color:var(--blue)}
+@media(max-width:1040px){
+  .top-in{gap:10px}
+  .nav{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap;border-top:1px solid var(--line);padding-block:7px;gap:18px;scrollbar-width:none}
+  .nav::-webkit-scrollbar{height:0}
+}
 
 /* HERO */
-.hero{padding-block:clamp(44px,7vw,84px) 0}
+.hero{padding-block:clamp(40px,6vw,72px) clamp(48px,7vw,80px)}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,64px);align-items:center}
-.hero h1{font-size:clamp(2.7rem,6.4vw,5rem);font-weight:600;letter-spacing:-.01em}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:600;letter-spacing:-.01em}
 .hero h1 span{color:var(--blue)}
 .lead{margin-top:22px;font-size:1.15rem;color:var(--ink-2);max-width:44ch}
 .cta{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
@@ -70,7 +76,7 @@ section{padding-block:clamp(56px,8vw,96px)}
 .shot figcaption{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-top:1px solid var(--ink);font:500 .72rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase}
 @media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
 
-.specs{margin-top:clamp(48px,7vw,80px);border-block:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr)}
+.specs{margin-top:clamp(44px,6vw,72px);border-block:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr)}
 .specs > div{padding:24px;border-left:1px solid var(--line)}
 .specs > div:first-child{border-left:0;padding-left:0}
 .specs small{display:block;font:500 .72rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
@@ -88,9 +94,9 @@ section{padding-block:clamp(56px,8vw,96px)}
 .band ul{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid rgba(255,255,255,.3)}
 .band li{display:flex;align-items:flex-start;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.3);font-weight:500}
 .band li .stk{margin-top:2px;width:20px;height:20px}
-.plate{margin:0;border:1px solid rgba(255,255,255,.5);padding:clamp(18px,3vw,30px)}
-.plate svg{width:100%;height:auto;display:block}
-.plate figcaption{display:flex;justify-content:space-between;gap:12px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.4);font:500 .72rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#dbe6f8}
+.plate{margin:0;border:1px solid rgba(255,255,255,.5);padding:12px}
+.plate img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.plate figcaption{display:flex;justify-content:space-between;gap:12px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.4);font:500 .72rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#dbe6f8}
 @media(max-width:860px){.band .wrap{grid-template-columns:1fr}}
 
 /* SOLDADURA */
@@ -157,7 +163,20 @@ section{padding-block:clamp(56px,8vw,96px)}
 .gal figcaption{display:flex;gap:12px;margin-top:12px;font:500 .72rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
 .gal figcaption span{color:var(--blue);flex:none}
 @media(max-width:860px){.gal{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.gal{grid-template-columns:1fr}}
+@media(max-width:520px){.gal{grid-template-columns:1fr 1fr;gap:16px 12px}}
+
+/* REELS */
+.reels{background:var(--ink);color:#fff;padding:clamp(28px,4vw,48px);display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,48px);align-items:center;margin-top:8px}
+.reels *{color:#fff}
+.reels .eyebrow{color:var(--blue-hi)}
+.reels h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:600}
+.reels p{color:#c7cfdb;margin-top:14px;max-width:48ch}
+.reels .cta{margin-top:24px}
+.reels .btn-line{color:#fff;border-color:#fff}
+.reels .btn-line:hover{background:#fff;border-color:#fff;color:var(--ink)}
+.reels-art{border:1px solid rgba(255,255,255,.4);aspect-ratio:9/10;display:grid;place-items:center;background:repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 12px,transparent 12px 24px)}
+.reels-art svg{width:40%;fill:#fff}
+@media(max-width:760px){.reels{grid-template-columns:1fr}.reels-art{display:none}}
 
 /* POR QUÉ */
 .why{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
@@ -184,7 +203,7 @@ section{padding-block:clamp(56px,8vw,96px)}
 .form .btn{width:100%;min-height:54px;font-size:1.06rem}
 @media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
 
-/* PIE · cajetín técnico */
+/* PIE */
 .foot{background:var(--paper);border-top:1px solid var(--ink)}
 .tb{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;border-bottom:1px solid var(--line)}
 .tb > div{padding:20px;border-left:1px solid var(--line)}
@@ -193,37 +212,15 @@ section{padding-block:clamp(56px,8vw,96px)}
 .tb b{display:block;margin-top:8px;font:600 1.1rem/1.3 var(--head)}
 .tb span,.tb a{display:block;margin-top:6px;font-size:.95rem;text-decoration:none}
 .tb a:hover{color:var(--blue);text-decoration:underline}
-.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:18px;font:400 .76rem/1.4 var(--mono);color:var(--muted);letter-spacing:.02em}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:18px;font:400 .76rem/1.4 var(--mono);color:var(--muted)}
 @media(max-width:860px){.tb{grid-template-columns:1fr 1fr}.tb > div:nth-child(odd){border-left:0;padding-left:0}.tb > div:nth-child(n+3){border-top:1px solid var(--line)}}
-
-/* Ajustes móvil (≤520 px) */
-@media(max-width:520px){
-  .top-in{gap:12px}
-  .top .btn{padding:.5em .85em;font-size:.86rem}
-  .hero h1{font-size:2.6rem}
-  .specs > div{padding:18px 0}
-  .svc{grid-template-columns:1fr 1fr}
-  .svc article{padding:22px 16px 24px}
-  .svc h3{font-size:1.1rem}
-  .svc .stk{width:26px;height:26px}
-  .cards3 article{padding:24px 20px 26px}
-  .spec{padding:22px 18px}
-  .gal figcaption{font-size:.66rem}
-  .tb{grid-template-columns:1fr}
-  .tb > div,.tb > div:first-child,.tb > div:nth-child(odd){border-left:0;padding:16px 0;border-top:1px solid var(--line)}
-  .tb > div:first-child{border-top:0}
-  .tb b{font-size:1rem}
-  .foot-bottom{flex-direction:column;gap:6px}
-  .fab{right:14px;bottom:14px}
-  .contact-grid{gap:32px}
-  .phone{font-size:1.4rem}
-}
+@media(max-width:520px){.tb{grid-template-columns:1fr}.tb > div{border-left:0;padding:16px 0;border-top:1px solid var(--line)}.tb > div:first-child{border-top:0}.foot-bottom{flex-direction:column;gap:6px}}
 
 /* WhatsApp flotante · torre metálica en acero (render) */
 .fab{position:fixed;right:16px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:50;display:block;line-height:0;text-decoration:none;transition:transform .18s ease}
 .fab img{height:134px;width:auto;display:block}
 .fab:hover{transform:translateY(-4px)}
-@media(max-width:520px){.fab img{height:108px}}
+@media(max-width:520px){.fab{right:10px}.fab img{height:106px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
@@ -240,31 +237,30 @@ section{padding-block:clamp(56px,8vw,96px)}
   <symbol id="i-drum" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M8 3v18M16 3v18"/></symbol>
   <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14 7l3-3 3 3-3 3M3 21l9-9M5 12l-2 2 4 4 2-2"/></symbol>
   <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16zM14 6l4 4"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></symbol>
 </svg>
 
 <header class="top">
   <div class="wrap top-in">
-    <a class="brand" href="#inicio" aria-label="ANCO Metalmecánicos, inicio">
-      <i aria-hidden="true"></i>
-      <span><b>ANCO</b><small>Multiservicios Metalmecánicos</small></span>
+    <a class="brand" href="#inicio" data-view="inicio" aria-label="ANCO Metalmecánicos, inicio">
+      <img src="img/logo.png" alt="ANCO Multiservicios Metalmecánicos">
     </a>
     <nav class="nav" aria-label="Secciones">
-      <a href="#wireline"><span>01</span> Wireline</a>
-      <a href="#soldadura"><span>02</span> Soldadura</a>
-      <a href="#diseno"><span>03</span> Diseño 3D</a>
-      <a href="#calidad"><span>04</span> Calidad</a>
-      <a href="#servicios"><span>05</span> Servicios</a>
-      <a href="#portafolio"><span>06</span> Obras</a>
+      <a href="#inicio" data-view="inicio"><span>00</span> Inicio</a>
+      <a href="#servicios" data-view="servicios"><span>01</span> Servicios</a>
+      <a href="#wireline" data-view="wireline"><span>02</span> Wireline</a>
+      <a href="#soldadura" data-view="soldadura"><span>03</span> Soldadura</a>
+      <a href="#proceso" data-view="proceso"><span>04</span> Diseño &amp; calidad</a>
+      <a href="#obras" data-view="obras"><span>05</span> Obras</a>
+      <a href="#empresa" data-view="empresa"><span>06</span> Empresa</a>
     </nav>
-    <a class="btn" href="https://wa.me/573228660162?text=Hola%20ANCO,%20quiero%20cotizar%20un%20trabajo%20en%20metal." target="_blank" rel="noopener">
-      <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp
-    </a>
   </div>
 </header>
 
-<main id="inicio">
+<main>
 
-  <section class="hero">
+  <!-- VISTA: INICIO -->
+  <section class="view hero" id="inicio">
     <div class="wrap">
       <div class="hero-grid">
         <div>
@@ -273,12 +269,12 @@ section{padding-block:clamp(56px,8vw,96px)}
           <p class="lead">Del hogar a la industria: estructuras, soldadura certificada y fabricación especializada, con diseño a la medida y respaldo de calidad.</p>
           <div class="cta">
             <a class="btn" href="https://wa.me/573228660162?text=Hola%20ANCO,%20quiero%20cotizar%20un%20trabajo%20en%20metal." target="_blank" rel="noopener">Cotiza gratis</a>
-            <a class="btn btn-line" href="#portafolio">Ver obras</a>
+            <a class="btn btn-line" href="#obras" data-view="obras">Ver obras</a>
           </div>
         </div>
         <figure class="shot">
-          <img src="img/obra1.jpg" alt="Estructura metálica fabricada por ANCO">
-          <figcaption><span>Obra 01 · Estructura en acero</span><span>Neiva</span></figcaption>
+          <img src="img/hero.jpg" alt="Estructura metálica fabricada por ANCO">
+          <figcaption><span>Obra · Estructura en acero</span><span>Neiva</span></figcaption>
         </figure>
       </div>
       <div class="specs">
@@ -289,220 +285,240 @@ section{padding-block:clamp(56px,8vw,96px)}
     </div>
   </section>
 
-  <section id="wireline" class="band">
-    <div class="wrap">
-      <div>
-        <p class="eyebrow">01 · Especialidad · Servicios petroleros</p>
-        <h2>Drums para unidades Wireline</h2>
-        <p>Fabricamos drums (carretes o tambores) para unidades wireline: la pieza donde se enrolla el cable. Construcción soldada bajo norma, con el diámetro del núcleo calculado según el radio mínimo del cable, para que enrolle parejo y seguro.</p>
-        <ul>
-          <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Construcción soldada bajo código AWS D1.1</li>
-          <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Diámetro acorde al radio mínimo del cable</li>
-          <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Materiales certificados y control de calidad</li>
-          <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Fabricación a la medida de tu unidad</li>
-        </ul>
-        <p style="margin-top:24px">¿Necesitas un drum a medida? Escríbenos con las especificaciones del cable y tu unidad.</p>
-      </div>
-      <figure class="plate">
-        <svg viewBox="0 0 360 250" role="img" aria-label="Esquema de drum para wireline con cotas de largo y diámetro">
-          <defs>
-            <pattern id="wr" width="12" height="10" patternUnits="userSpaceOnUse"><path d="M.5 0V10" stroke="#9dbcf0" stroke-width="1"/></pattern>
-            <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path d="M0 0L8 4L0 8z" fill="#dbe6f8"/></marker>
-          </defs>
-          <path d="M8 120H352" fill="none" stroke="#9dbcf0" stroke-width="1" stroke-dasharray="14 4 3 4"/>
-          <rect x="76" y="62" width="208" height="116" fill="url(#wr)"/>
-          <g fill="none" stroke="#fff" stroke-width="1.6">
-            <path d="M76 62H284M76 178H284"/>
-            <ellipse cx="60" cy="120" rx="16" ry="88"/>
-            <ellipse cx="300" cy="120" rx="16" ry="88"/>
-            <ellipse cx="60" cy="120" rx="5" ry="22"/>
-            <ellipse cx="300" cy="120" rx="5" ry="22"/>
-          </g>
-          <g fill="none" stroke="#dbe6f8" stroke-width="1">
-            <path d="M60 222H300" marker-start="url(#ar)" marker-end="url(#ar)"/>
-            <path d="M60 212V232M300 212V232"/>
-            <path d="M332 32V208" marker-start="url(#ar)" marker-end="url(#ar)"/>
-            <path d="M322 32H342M322 208H342"/>
-          </g>
-          <g font-family="IBM Plex Mono,monospace" font-size="12" fill="#dbe6f8">
-            <text x="180" y="242" text-anchor="middle">L</text>
-            <text x="346" y="124">Ø</text>
-          </g>
-        </svg>
-        <figcaption><span>Esquema ilustrativo</span><span>Drum · wireline</span></figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section id="soldadura">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">02 · Soldadura certificada · en palabras simples</p>
-        <h2>¿Qué significa "soldadura certificada"?</h2>
-        <p>Trabajamos con los tres procesos principales. Aquí te explicamos cada uno, rápido y claro, para que sepas qué pides.</p>
-      </div>
-      <div class="cards3">
-        <article>
-          <span class="code">SMAW</span>
-          <h3>Electrodo revestido</h3>
-          <p>La soldadura de siempre: fuerte y versátil. Ideal para estructuras y trabajo pesado, incluso a la intemperie.</p>
-        </article>
-        <article>
-          <span class="code">MIG/MAG</span>
-          <h3>Alambre continuo (GMAW)</h3>
-          <p>Rápida y limpia. Perfecta para producción en serie y láminas, con buen acabado.</p>
-        </article>
-        <article>
-          <span class="code">TIG</span>
-          <h3>Alta precisión (GTAW)</h3>
-          <p>La más fina y prolija. Para acabados de calidad y materiales especiales como el acero inoxidable.</p>
-        </article>
-      </div>
-      <div class="spec">
-        <h3>¿Y qué quiere decir "certificada"?</h3>
-        <p>Que la unión no se hace "a ojo": sigue un procedimiento probado y documentado, hecho por un soldador calificado. Eso garantiza seguridad y durabilidad.</p>
-        <dl class="spec-grid">
-          <div><dt>WPS</dt><dd>La receta de cómo se suelda</dd></div>
-          <div><dt>PQR</dt><dd>La prueba de que esa receta pasó los ensayos</dd></div>
-          <div><dt>Soldador calificado</dt><dd>Persona certificada para ese trabajo</dd></div>
-          <div><dt>AWS D1.1</dt><dd>Norma internacional de soldadura en acero</dd></div>
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <section id="diseno" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">03 · Diseño a la medida</p>
-        <h2>Lo dibujamos antes de fabricarlo</h2>
-        <p>¿No sabes cómo quedaría tu proyecto? Nosotros lo diseñamos. Hacemos dibujos y bosquejos en 3D a la medida de lo que necesitas, para que lo apruebes antes de construir.</p>
-      </div>
-      <ol class="steps">
-        <li><span class="n">01</span><h3>Cuéntanos tu idea</h3><p>Nos dices qué necesitas, medidas y dónde va.</p></li>
-        <li><span class="n">02</span><h3>Diseño 3D</h3><p>Te mostramos un dibujo o render para que veas cómo quedará.</p></li>
-        <li><span class="n">03</span><h3>Fabricación</h3><p>Construimos con materiales certificados y soldadura calificada.</p></li>
-        <li><span class="n">04</span><h3>Entrega con respaldo</h3><p>Instalamos y entregamos con los documentos de calidad.</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <section id="calidad" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">04 · Calidad y garantía</p>
-        <h2>Trabajo respaldado, no improvisado</h2>
-      </div>
-      <div class="q-grid">
-        <ul class="q-list">
-          <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg><div><b>Materiales certificados</b><span>Usamos acero y consumibles con certificado de calidad.</span></div></li>
-          <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg><div><b>Control de calidad por proyecto</b><span>Revisamos cada etapa, del armado a la entrega.</span></div></li>
-          <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg><div><b>Soldadura calificada</b><span>Procedimientos y soldadores respaldados por WPS/PQR.</span></div></li>
-          <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg><div><b>Diseño a la medida</b><span>Dibujos y 3D aprobados por ti antes de fabricar.</span></div></li>
-        </ul>
-        <div class="docs">
-          <h3>Proyectos grandes</h3>
-          <p>Para proyectos industriales entregamos un paquete de documentos de calidad que respalda tu garantía:</p>
-          <ol>
-            <li>Certificados de material</li>
-            <li>Procedimientos de soldadura (WPS/PQR)</li>
-            <li>Registros de inspección y control</li>
-          </ol>
+  <!-- VISTA: SERVICIOS -->
+  <div class="view" id="servicios" hidden>
+    <section class="servicios">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">01 · Qué hacemos</p>
+          <h2>Un solo taller para todo tu trabajo en metal</h2>
+          <p>Fabricamos a la medida del cliente y hacemos mantenimiento. Cuéntanos tu idea y la volvemos realidad.</p>
+        </div>
+        <div class="svc">
+          <article><svg class="stk" aria-hidden="true"><use href="#i-door"/></svg><h3>Puertas y portones</h3><p>Seguridad y diseño a la medida.</p></article>
+          <article><svg class="stk" aria-hidden="true"><use href="#i-grid"/></svg><h3>Ventanas y rejas</h3><p>Protección sin perder estética.</p></article>
+          <article><svg class="stk" aria-hidden="true"><use href="#i-roof"/></svg><h3>Cubiertas</h3><p>Techos y estructuras que resisten.</p></article>
+          <article><svg class="stk" aria-hidden="true"><use href="#i-stair"/></svg><h3>Escaleras</h3><p>Firmes y bien terminadas.</p></article>
+          <article><svg class="stk" aria-hidden="true"><use href="#i-struct"/></svg><h3>Estructuras</h3><p>Montajes y estructura para obra.</p></article>
+          <article><svg class="stk" aria-hidden="true"><use href="#i-drum"/></svg><h3>Drums y wireline</h3><p>Carretes para enrollar cable.</p></article>
+          <article><svg class="stk" aria-hidden="true"><use href="#i-tool"/></svg><h3>Mantenimiento</h3><p>Reparación y mantenimiento industrial.</p></article>
+          <article><svg class="stk" aria-hidden="true"><use href="#i-pen"/></svg><h3>Diseños especiales</h3><p>A la medida de tu proyecto.</p></article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <section id="servicios" class="servicios">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">05 · Qué hacemos</p>
-        <h2>Un solo taller para todo tu trabajo en metal</h2>
-        <p>Fabricamos a la medida del cliente y hacemos mantenimiento. Cuéntanos tu idea y la volvemos realidad.</p>
+  <!-- VISTA: WIRELINE -->
+  <div class="view" id="wireline" hidden>
+    <section class="band">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">02 · Especialidad · Servicios petroleros</p>
+          <h2>Drums para unidades Wireline</h2>
+          <p>Fabricamos drums (carretes o tambores) para unidades wireline: la pieza donde se enrolla el cable. Construcción soldada bajo norma, con el diámetro del núcleo calculado según el radio mínimo del cable, para que enrolle parejo y seguro.</p>
+          <ul>
+            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Construcción soldada bajo código AWS D1.1</li>
+            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Diámetro acorde al radio mínimo del cable</li>
+            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Materiales certificados y control de calidad</li>
+            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg>Fabricación a la medida de tu unidad</li>
+          </ul>
+          <p style="margin-top:24px">¿Necesitas un drum a medida? Escríbenos con las especificaciones del cable y tu unidad.</p>
+        </div>
+        <figure class="plate">
+          <img src="img/drum.jpg" alt="Drum para unidad wireline fabricado por ANCO">
+          <figcaption><span>Fabricación de drum</span><span>Wireline · ANCO</span></figcaption>
+        </figure>
       </div>
-      <div class="svc">
-        <article><svg class="stk" aria-hidden="true"><use href="#i-door"/></svg><h3>Puertas y portones</h3><p>Seguridad y diseño a la medida.</p></article>
-        <article><svg class="stk" aria-hidden="true"><use href="#i-grid"/></svg><h3>Ventanas y rejas</h3><p>Protección sin perder estética.</p></article>
-        <article><svg class="stk" aria-hidden="true"><use href="#i-roof"/></svg><h3>Cubiertas</h3><p>Techos y estructuras que resisten.</p></article>
-        <article><svg class="stk" aria-hidden="true"><use href="#i-stair"/></svg><h3>Escaleras</h3><p>Firmes y bien terminadas.</p></article>
-        <article><svg class="stk" aria-hidden="true"><use href="#i-struct"/></svg><h3>Estructuras</h3><p>Montajes y estructura para obra.</p></article>
-        <article><svg class="stk" aria-hidden="true"><use href="#i-drum"/></svg><h3>Drums y wireline</h3><p>Carretes para enrollar cable.</p></article>
-        <article><svg class="stk" aria-hidden="true"><use href="#i-tool"/></svg><h3>Mantenimiento</h3><p>Reparación y mantenimiento industrial.</p></article>
-        <article><svg class="stk" aria-hidden="true"><use href="#i-pen"/></svg><h3>Diseños especiales</h3><p>A la medida de tu proyecto.</p></article>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <section id="portafolio">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">06 · Portafolio</p>
-        <h2>Obras que hablan por nosotros</h2>
-        <p>Algunos de los trabajos entregados por ANCO. La calidad del acabado es nuestra mejor carta de presentación.</p>
+  <!-- VISTA: SOLDADURA -->
+  <div class="view" id="soldadura" hidden>
+    <section>
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">03 · Soldadura certificada · en palabras simples</p>
+          <h2>¿Qué significa "soldadura certificada"?</h2>
+          <p>Trabajamos con los tres procesos principales. Aquí te explicamos cada uno, rápido y claro, para que sepas qué pides.</p>
+        </div>
+        <div class="cards3">
+          <article><span class="code">SMAW</span><h3>Electrodo revestido</h3><p>La soldadura de siempre: fuerte y versátil. Ideal para estructuras y trabajo pesado, incluso a la intemperie.</p></article>
+          <article><span class="code">MIG/MAG</span><h3>Alambre continuo (GMAW)</h3><p>Rápida y limpia. Perfecta para producción en serie y láminas, con buen acabado.</p></article>
+          <article><span class="code">TIG</span><h3>Alta precisión (GTAW)</h3><p>La más fina y prolija. Para acabados de calidad y materiales especiales como el acero inoxidable.</p></article>
+        </div>
+        <div class="spec">
+          <h3>¿Y qué quiere decir "certificada"?</h3>
+          <p>Que la unión no se hace "a ojo": sigue un procedimiento probado y documentado, hecho por un soldador calificado. Eso garantiza seguridad y durabilidad.</p>
+          <dl class="spec-grid">
+            <div><dt>WPS</dt><dd>La receta de cómo se suelda</dd></div>
+            <div><dt>PQR</dt><dd>La prueba de que esa receta pasó los ensayos</dd></div>
+            <div><dt>Soldador calificado</dt><dd>Persona certificada para ese trabajo</dd></div>
+            <div><dt>AWS D1.1</dt><dd>Norma internacional de soldadura en acero</dd></div>
+          </dl>
+        </div>
       </div>
-      <ul class="gal">
-        <li><figure><img src="img/p2.jpg" alt="Fabricación a medida de ANCO" loading="lazy"><figcaption><span>F-01</span>Fabricación a medida</figcaption></figure></li>
-        <li><figure><img src="img/p3.jpg" alt="Taller ANCO" loading="lazy"><figcaption><span>F-02</span>Taller ANCO</figcaption></figure></li>
-        <li><figure><img src="img/p4.jpg" alt="Proyecto industrial de ANCO" loading="lazy"><figcaption><span>F-03</span>Proyecto industrial</figcaption></figure></li>
-        <li><figure><img src="img/p9.jpg" alt="Estructura metálica de ANCO" loading="lazy"><figcaption><span>F-04</span>Estructura metálica</figcaption></figure></li>
-        <li><figure><img src="img/obra2.jpg" alt="Puerta corrediza fabricada por ANCO" loading="lazy"><figcaption><span>F-05</span>Puerta corrediza</figcaption></figure></li>
-        <li><figure><img src="img/p6.jpg" alt="Montaje en obra de ANCO" loading="lazy"><figcaption><span>F-06</span>Montaje en obra</figcaption></figure></li>
-      </ul>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <section id="nosotros" class="why-sec" style="background:var(--tint)">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">07 · Por qué ANCO</p>
-        <h2>Trabajo serio, hecho a tu medida</h2>
+  <!-- VISTA: DISEÑO & CALIDAD -->
+  <div class="view" id="proceso" hidden>
+    <section id="diseno">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">04 · Diseño a la medida</p>
+          <h2>Lo dibujamos antes de fabricarlo</h2>
+          <p>¿No sabes cómo quedaría tu proyecto? Nosotros lo diseñamos. Hacemos dibujos y bosquejos en 3D a la medida de lo que necesitas, para que lo apruebes antes de construir.</p>
+        </div>
+        <ol class="steps">
+          <li><span class="n">01</span><h3>Cuéntanos tu idea</h3><p>Nos dices qué necesitas, medidas y dónde va.</p></li>
+          <li><span class="n">02</span><h3>Diseño 3D</h3><p>Te mostramos un dibujo o render para que veas cómo quedará.</p></li>
+          <li><span class="n">03</span><h3>Fabricación</h3><p>Construimos con materiales certificados y soldadura calificada.</p></li>
+          <li><span class="n">04</span><h3>Entrega con respaldo</h3><p>Instalamos y entregamos con los documentos de calidad.</p></li>
+        </ol>
       </div>
-      <div class="why">
-        <article><span class="n">01</span><h3>Fabricación a la medida</h3><p>Tú lo imaginas, nosotros lo diseñamos y fabricamos exactamente como lo necesitas.</p></article>
-        <article><span class="n">02</span><h3>Del hogar a la industria</h3><p>Casas, comercios y empresas, incluidos los servicios petroleros, con la misma calidad.</p></article>
-        <article><span class="n">03</span><h3>Respaldo y garantía</h3><p>Materiales y soldadura certificados, con documentos de calidad en los proyectos grandes.</p></article>
+    </section>
+    <section id="calidad" style="padding-top:0">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">Calidad y garantía</p>
+          <h2>Trabajo respaldado, no improvisado</h2>
+        </div>
+        <div class="q-grid">
+          <ul class="q-list">
+            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg><div><b>Materiales certificados</b><span>Usamos acero y consumibles con certificado de calidad.</span></div></li>
+            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg><div><b>Control de calidad por proyecto</b><span>Revisamos cada etapa, del armado a la entrega.</span></div></li>
+            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg><div><b>Soldadura calificada</b><span>Procedimientos y soldadores respaldados por WPS/PQR.</span></div></li>
+            <li><svg class="stk" aria-hidden="true"><use href="#i-check"/></svg><div><b>Diseño a la medida</b><span>Dibujos y 3D aprobados por ti antes de fabricar.</span></div></li>
+          </ul>
+          <div class="docs">
+            <h3>Proyectos grandes</h3>
+            <p>Para proyectos industriales entregamos un paquete de documentos de calidad que respalda tu garantía:</p>
+            <ol>
+              <li>Certificados de material</li>
+              <li>Procedimientos de soldadura (WPS/PQR)</li>
+              <li>Registros de inspección y control</li>
+            </ol>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
+
+  <!-- VISTA: OBRAS -->
+  <div class="view" id="obras" hidden>
+    <section id="portafolio">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">05 · Portafolio</p>
+          <h2>Obras que hablan por nosotros</h2>
+          <p>Una selección de trabajos entregados por ANCO: estructuras, fachadas, drums para wireline, tanques, carrocerías y más. La calidad del acabado es nuestra mejor carta de presentación.</p>
+        </div>
+        <ul class="gal">
+          <li><figure><img src="img/g01.jpg" alt="Fachada en vidrio y estructura metálica" loading="lazy"><figcaption><span>F-01</span>Fachada en vidrio</figcaption></figure></li>
+          <li><figure><img src="img/g02.jpg" alt="Drum para wireline" loading="lazy"><figcaption><span>F-02</span>Drum · wireline</figcaption></figure></li>
+          <li><figure><img src="img/g03.jpg" alt="Estructura metálica" loading="lazy"><figcaption><span>F-03</span>Estructura metálica</figcaption></figure></li>
+          <li><figure><img src="img/g04.jpg" alt="Soldadura en acero inoxidable" loading="lazy"><figcaption><span>F-04</span>Soldadura · inoxidable</figcaption></figure></li>
+          <li><figure><img src="img/g05.jpg" alt="Drums para unidad wireline" loading="lazy"><figcaption><span>F-05</span>Drums para wireline</figcaption></figure></li>
+          <li><figure><img src="img/g06.jpg" alt="Fachada comercial" loading="lazy"><figcaption><span>F-06</span>Fachada comercial</figcaption></figure></li>
+          <li><figure><img src="img/g07.jpg" alt="Bodega industrial" loading="lazy"><figcaption><span>F-07</span>Bodega industrial</figcaption></figure></li>
+          <li><figure><img src="img/g08.jpg" alt="Drum terminado" loading="lazy"><figcaption><span>F-08</span>Drum terminado</figcaption></figure></li>
+          <li><figure><img src="img/g09.jpg" alt="Carrocería metálica" loading="lazy"><figcaption><span>F-09</span>Carrocería metálica</figcaption></figure></li>
+          <li><figure><img src="img/g10.jpg" alt="Estación de servicio" loading="lazy"><figcaption><span>F-10</span>Estación de servicio</figcaption></figure></li>
+          <li><figure><img src="img/g11.jpg" alt="Rueda o polea mecanizada" loading="lazy"><figcaption><span>F-11</span>Rueda / polea</figcaption></figure></li>
+          <li><figure><img src="img/g12.jpg" alt="Soldadura en obra" loading="lazy"><figcaption><span>F-12</span>Soldadura en obra</figcaption></figure></li>
+          <li><figure><img src="img/g13.jpg" alt="Cubierta metálica" loading="lazy"><figcaption><span>F-13</span>Cubierta metálica</figcaption></figure></li>
+          <li><figure><img src="img/g14.jpg" alt="Tanque en acero inoxidable" loading="lazy"><figcaption><span>F-14</span>Tanque en inoxidable</figcaption></figure></li>
+          <li><figure><img src="img/g15.jpg" alt="Fabricación de drum" loading="lazy"><figcaption><span>F-15</span>Fabricación de drum</figcaption></figure></li>
+          <li><figure><img src="img/g16.jpg" alt="Portón y reja" loading="lazy"><figcaption><span>F-16</span>Portón / reja</figcaption></figure></li>
+          <li><figure><img src="img/g17.jpg" alt="Estructura en acero" loading="lazy"><figcaption><span>F-17</span>Estructura en acero</figcaption></figure></li>
+          <li><figure><img src="img/g18.jpg" alt="Unidad wireline" loading="lazy"><figcaption><span>F-18</span>Unidad wireline</figcaption></figure></li>
+          <li><figure><img src="img/g19.jpg" alt="Carrocería y furgón" loading="lazy"><figcaption><span>F-19</span>Carrocería / furgón</figcaption></figure></li>
+          <li><figure><img src="img/g20.jpg" alt="Tanque inoxidable" loading="lazy"><figcaption><span>F-20</span>Tanque inoxidable</figcaption></figure></li>
+          <li><figure><img src="img/g21.jpg" alt="Impulsor o rodete" loading="lazy"><figcaption><span>F-21</span>Impulsor / rodete</figcaption></figure></li>
+          <li><figure><img src="img/g22.jpg" alt="Mobiliario en inoxidable" loading="lazy"><figcaption><span>F-22</span>Mobiliario inox</figcaption></figure></li>
+          <li><figure><img src="img/g23.jpg" alt="Tubería y spools" loading="lazy"><figcaption><span>F-23</span>Tubería / spool</figcaption></figure></li>
+          <li><figure><img src="img/g24.jpg" alt="Fachada y baranda" loading="lazy"><figcaption><span>F-24</span>Fachada y baranda</figcaption></figure></li>
+          <li><figure><img src="img/g25.jpg" alt="Montaje en obra" loading="lazy"><figcaption><span>F-25</span>Montaje en obra</figcaption></figure></li>
+          <li><figure><img src="img/g26.jpg" alt="Rodete mecanizado" loading="lazy"><figcaption><span>F-26</span>Rodete mecanizado</figcaption></figure></li>
+          <li><figure><img src="img/g27.jpg" alt="Servicio petrolero" loading="lazy"><figcaption><span>F-27</span>Servicio petrolero</figcaption></figure></li>
+          <li><figure><img src="img/g28.jpg" alt="Soldadura estructural" loading="lazy"><figcaption><span>F-28</span>Soldadura estructural</figcaption></figure></li>
+          <li><figure><img src="img/g29.jpg" alt="Tanque de almacenamiento" loading="lazy"><figcaption><span>F-29</span>Tanque de almacenamiento</figcaption></figure></li>
+          <li><figure><img src="img/g30.jpg" alt="Proyecto a la medida" loading="lazy"><figcaption><span>F-30</span>Proyecto a la medida</figcaption></figure></li>
+        </ul>
+      </div>
+    </section>
+    <section style="padding-top:0">
+      <div class="wrap">
+        <div class="reels">
+          <div>
+            <p class="eyebrow">Reels · míranos en acción</p>
+            <h2>Velo en video</h2>
+            <p>En nuestros Reels mostramos cómo fabricamos: soldadura, armado en obra y entrega de cada proyecto. Síguenos y mira el proceso real de ANCO.</p>
+            <div class="cta">
+              <a class="btn" href="https://www.instagram.com/anco.metalmecanicos/reels/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg>Ver Reels en Instagram</a>
+              <a class="btn btn-line" href="https://web.facebook.com/profile.php?id=100089587451568" target="_blank" rel="noopener">Facebook</a>
+            </div>
+          </div>
+          <div class="reels-art"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- VISTA: EMPRESA -->
+  <div class="view" id="empresa" hidden>
+    <section id="nosotros" style="background:var(--tint)">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">06 · Por qué ANCO</p>
+          <h2>Trabajo serio, hecho a tu medida</h2>
+        </div>
+        <div class="why">
+          <article><span class="n">01</span><h3>Fabricación a la medida</h3><p>Tú lo imaginas, nosotros lo diseñamos y fabricamos exactamente como lo necesitas.</p></article>
+          <article><span class="n">02</span><h3>Del hogar a la industria</h3><p>Casas, comercios y empresas, incluidos los servicios petroleros, con la misma calidad.</p></article>
+          <article><span class="n">03</span><h3>Respaldo y garantía</h3><p>Materiales y soldadura certificados, con documentos de calidad en los proyectos grandes.</p></article>
+        </div>
+      </div>
+    </section>
+    <section id="contacto" class="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <p class="eyebrow">Cotiza gratis</p>
+          <h2>Cuéntanos tu proyecto</h2>
+          <p class="lead">Llena los datos y te llevamos directo a WhatsApp con tu mensaje listo. Te respondemos con tu cotización.</p>
+          <a class="phone" href="https://wa.me/573228660162" target="_blank" rel="noopener">322 866 0162</a>
+        </div>
+        <form id="cotizar" class="form" autocomplete="off" onsubmit="return false">
+          <div>
+            <label for="svc">¿Qué necesitas?</label>
+            <select id="svc">
+              <option>Puertas o portones</option>
+              <option>Ventanas o rejas</option>
+              <option>Cubiertas</option>
+              <option>Escaleras</option>
+              <option>Estructuras metálicas</option>
+              <option>Drums / unidad Wireline</option>
+              <option>Soldadura certificada</option>
+              <option>Mantenimiento</option>
+              <option>Diseño 3D / proyecto a la medida</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div>
+            <label for="nombre">Tu nombre</label>
+            <input id="nombre" type="text" placeholder="Ej. Juan Pérez">
+          </div>
+          <div>
+            <label for="detalle">Detalle del proyecto</label>
+            <textarea id="detalle" placeholder="Medidas, materiales, dónde queda la obra…"></textarea>
+          </div>
+          <a id="enviar" class="btn" target="_blank" rel="noopener" href="https://wa.me/573228660162">Enviar por WhatsApp</a>
+        </form>
+      </div>
+    </section>
+  </div>
 
 </main>
-
-<section id="contacto" class="contact">
-  <div class="wrap contact-grid">
-    <div>
-      <p class="eyebrow">08 · Cotiza gratis</p>
-      <h2>Cuéntanos tu proyecto</h2>
-      <p class="lead">Llena los datos y te llevamos directo a WhatsApp con tu mensaje listo. Te respondemos con tu cotización.</p>
-      <a class="phone" href="https://wa.me/573228660162" target="_blank" rel="noopener">322 866 0162</a>
-    </div>
-    <form id="cotizar" class="form" autocomplete="off" onsubmit="return false">
-      <div>
-        <label for="svc">¿Qué necesitas?</label>
-        <select id="svc">
-          <option>Puertas o portones</option>
-          <option>Ventanas o rejas</option>
-          <option>Cubiertas</option>
-          <option>Escaleras</option>
-          <option>Estructuras metálicas</option>
-          <option>Drums / unidad Wireline</option>
-          <option>Soldadura certificada</option>
-          <option>Mantenimiento</option>
-          <option>Diseño 3D / proyecto a la medida</option>
-          <option>Otro</option>
-        </select>
-      </div>
-      <div>
-        <label for="nombre">Tu nombre</label>
-        <input id="nombre" type="text" placeholder="Ej. Juan Pérez">
-      </div>
-      <div>
-        <label for="detalle">Detalle del proyecto</label>
-        <textarea id="detalle" placeholder="Medidas, materiales, dónde queda la obra…"></textarea>
-      </div>
-      <a id="enviar" class="btn" target="_blank" rel="noopener" href="https://wa.me/573228660162">Enviar por WhatsApp</a>
-    </form>
-  </div>
-</section>
 
 <footer class="foot">
   <div class="wrap">
@@ -525,17 +541,38 @@ section{padding-block:clamp(56px,8vw,96px)}
 
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Navegación por secciones (una vista a la vez)
+  var views = Array.prototype.slice.call(document.querySelectorAll('.view'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('[data-view]'));
+  function show(id){
+    var ok = views.some(function(v){ return v.id === id; });
+    if(!ok) id = 'inicio';
+    views.forEach(function(v){ v.hidden = (v.id !== id); });
+    links.forEach(function(a){ a.setAttribute('aria-current', a.getAttribute('data-view') === id ? 'page' : 'false'); });
+    window.scrollTo(0,0);
+  }
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var id = a.getAttribute('data-view');
+      show(id);
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+  window.addEventListener('hashchange', function(){ show((location.hash||'').slice(1)); });
+  show((location.hash||'').slice(1) || 'inicio');
+
+  // Cotizador → WhatsApp
   (function(){
-    var sel = document.getElementById('svc');
-    var nom = document.getElementById('nombre');
-    var det = document.getElementById('detalle');
-    var out = document.getElementById('enviar');
+    var sel=document.getElementById('svc'), nom=document.getElementById('nombre'),
+        det=document.getElementById('detalle'), out=document.getElementById('enviar');
     function build(){
-      var msg = 'Hola ANCO, quiero cotizar: ' + sel.value + '.';
-      var n = nom.value.trim(), d = det.value.trim();
-      if(n) msg += ' Mi nombre es ' + n + '.';
-      if(d) msg += ' Detalle: ' + d;
-      out.href = 'https://wa.me/573228660162?text=' + encodeURIComponent(msg);
+      var msg='Hola ANCO, quiero cotizar: '+sel.value+'.';
+      var n=nom.value.trim(), d=det.value.trim();
+      if(n) msg+=' Mi nombre es '+n+'.';
+      if(d) msg+=' Detalle: '+d;
+      out.href='https://wa.me/573228660162?text='+encodeURIComponent(msg);
     }
     document.getElementById('cotizar').addEventListener('input', build);
     build();
