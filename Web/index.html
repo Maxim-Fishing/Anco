@@ -79,6 +79,30 @@ section{padding-block:clamp(48px,7vw,84px)}
 .specs span{display:block;color:var(--muted);font-size:.92rem;margin-top:4px}
 @media(max-width:640px){.specs{grid-template-columns:1fr}.specs > div{border-left:0;border-top:1px solid var(--line);padding-left:0}.specs > div:first-child{border-top:0}}
 
+/* INICIO · extras */
+.home-do{margin-top:clamp(44px,6vw,72px)}
+.home-do .eyebrow{margin-bottom:12px}
+.home-do h2{font-size:clamp(1.6rem,3vw,2.2rem)}
+.do-grid{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.do-grid a{background:#fff;padding:24px 22px 26px;text-decoration:none;color:inherit;display:block;transition:background .15s}
+.do-grid a:hover{background:var(--blue-tint)}
+.do-grid .code{display:block;font:500 1.1rem/1 var(--mono);color:var(--blue)}
+.do-grid h3{margin-top:14px;font-size:1.15rem}
+.do-grid p{color:var(--muted);font-size:.92rem;margin-top:6px}
+.do-grid .go{display:block;margin-top:16px;font:500 .72rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
+@media(max-width:900px){.do-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.do-grid{grid-template-columns:1fr}}
+.sectores{margin-top:clamp(40px,5vw,60px);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.sectores small{font:500 .72rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+.sectores span{border:1px solid var(--line);padding:9px 16px;font:500 .9rem/1 var(--body)}
+.impact{margin-top:clamp(48px,6vw,78px);background:var(--ink);color:#fff;padding:clamp(32px,5vw,56px);display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;position:relative;overflow:hidden}
+.impact::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(157,188,240,.09) 0 14px,transparent 14px 28px);pointer-events:none}
+.impact > *{position:relative;z-index:1}
+.impact *{color:#fff}
+.impact h2{font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:600;max-width:20ch}
+.impact p{color:#c7cfdb;margin-top:12px;max-width:42ch}
+@media(max-width:640px){.impact{flex-direction:column;align-items:flex-start}}
+
 /* WIRELINE · banda azul */
 .band{background:var(--blue);color:#fff}
 .band :focus-visible{outline-color:#fff}
@@ -274,6 +298,30 @@ section{padding-block:clamp(48px,7vw,84px)}
         <div><small>Soldadura</small><b>Certificada</b><span>Soldadura y materiales</span></div>
         <div><small>Diseño</small><b>A la medida</b><span>Diseño 3D por proyecto</span></div>
         <div><small>Cobertura</small><b>Neiva</b><span>Y el Huila</span></div>
+      </div>
+
+      <div class="home-do">
+        <p class="eyebrow">Lo que hacemos</p>
+        <h2>Del hogar a la industria, en metal</h2>
+        <div class="do-grid">
+          <a href="#servicios" data-view="servicios"><span class="code">01</span><h3>Fabricación a la medida</h3><p>Puertas, rejas, cubiertas, escaleras y estructuras.</p><span class="go">Ver servicios →</span></a>
+          <a href="#soldadura" data-view="soldadura"><span class="code">02</span><h3>Soldadura certificada</h3><p>SMAW, MIG y TIG con respaldo WPS/PQR.</p><span class="go">Cómo funciona →</span></a>
+          <a href="#wireline" data-view="wireline"><span class="code">03</span><h3>Drums / Wireline</h3><p>Carretes para enrollar cable, sector petrolero.</p><span class="go">Ver especialidad →</span></a>
+          <a href="#proceso" data-view="proceso"><span class="code">04</span><h3>Diseño 3D y calidad</h3><p>Lo dibujamos antes de fabricar, con garantía.</p><span class="go">Ver proceso →</span></a>
+        </div>
+      </div>
+
+      <div class="sectores">
+        <small>Sectores</small>
+        <span>Hogar</span><span>Comercio</span><span>Industria</span><span>Sector petrolero</span><span>Agro</span>
+      </div>
+
+      <div class="impact">
+        <div>
+          <h2>Lo que imaginas en metal, lo hacemos realidad</h2>
+          <p>Materiales certificados, soldadura calificada y entrega con documentos de calidad. En Neiva y el Huila.</p>
+        </div>
+        <a class="btn" href="https://wa.me/573228660162?text=Hola%20ANCO,%20quiero%20cotizar%20un%20trabajo%20en%20metal." target="_blank" rel="noopener">Cotiza gratis</a>
       </div>
     </div>
   </section>
