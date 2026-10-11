@@ -109,9 +109,9 @@ section{padding-block:clamp(48px,7vw,84px)}
 @media(max-width:640px){.impact{flex-direction:column;align-items:flex-start}}
 /* Hero con video */
 .hero-v{position:relative;background:var(--ink);border-bottom:1px solid var(--ink);overflow:hidden}
-.hero-v-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.6}
-.hero-v::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(11,13,16,.9),rgba(11,13,16,.5) 55%,rgba(11,13,16,.25));pointer-events:none}
-.hero-v-cx{position:relative;z-index:2;display:flex;align-items:center;min-height:clamp(380px,52vw,560px);padding-block:clamp(40px,6vw,72px)}
+.hero-v-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:1}
+.hero-v::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(11,13,16,.94),rgba(11,13,16,.4) 42%,rgba(11,13,16,.08) 72%);pointer-events:none}
+.hero-v-cx{position:relative;z-index:2;display:flex;align-items:flex-end;min-height:clamp(420px,56vw,620px);padding-block:clamp(36px,5vw,56px)}
 .hero-v-cx .wrap{width:100%}
 .hero-v *{color:#fff}
 .hero-v .eyebrow{color:var(--blue-hi)}
@@ -317,14 +317,11 @@ section{padding-block:clamp(48px,7vw,84px)}
       <video class="hero-v-bg" autoplay muted loop playsinline preload="metadata" poster="img/welder.jpg">
         <source src="video/hero.mp4" type="video/mp4">
       </video>
-      <canvas class="sparks" aria-hidden="true"></canvas>
       <div class="hero-v-cx">
         <div class="wrap">
           <div class="hero-in">
-            <span class="hero-logo"><img src="img/logo.png" alt="ANCO Multiservicios Metalmecánicos"></span>
             <p class="eyebrow">Fabricación · Mantenimiento · Servicios petroleros · Neiva</p>
             <h1>Lo que imaginas en metal, lo fabricamos <span>a tu medida.</span></h1>
-            <p class="lead">Del hogar a la industria: estructuras, soldadura certificada y fabricación especializada, con respaldo de calidad.</p>
             <div class="cta">
               <a class="btn" href="https://wa.me/573228660162?text=Hola%20ANCO,%20quiero%20cotizar%20un%20trabajo%20en%20metal." target="_blank" rel="noopener">Cotiza gratis</a>
               <a class="btn btn-line" href="#obras" data-view="obras">Ver obras</a>
